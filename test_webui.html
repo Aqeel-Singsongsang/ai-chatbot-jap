@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chatbot AI Audio</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+    <h2>Tester Frontend Sederhana</h2>
+    <p>Silakan upload file suara Anda di bawah ini untuk mengetes interaksi ke Backend.</p>
+
+    <div>
+        <input type="file" id="audioFile" accept="audio/*">
+        <select id="personality">
+            <option value="ramah">Ramah</option>
+            <option value="pemarah">Pemarah</option>
+        </select>
+        <button id="sendBtn" style="padding: 10px; background: #007bff; color: white; border: none; cursor: pointer;">Kirim ke Backend</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p><strong>Teks User:</strong> <span id="userText">-</span></p>
+        <p><strong>Teks Balasan Bot:</strong> <span id="aiText">-</span></p>
+        <p><strong>Suara Balasan Bot:</strong></p>
+        <audio id="audioPlayer" controls></audio>
+    </div>
+
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', async () => {
+            const fileInput = document.getElementById('audioFile');
+            const personality = document.getElementById('personality').value;
+            
+            if (fileInput.files.length === 0) {
+                alert("Pilih file audio dulu!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('audio', fileInput.files[0]);
+            formData.append('personality', personality);
+
+            document.getElementById('aiText').textContent = "Loading...";
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chat', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error("Terjadi kesalahan di server.");
+
+                const data = await response.json();
+                
+                document.getElementById('userText').textContent = data.user_text;
+                document.getElementById('aiText').textContent = data.ai_text;
+                
+                // Set audio player source
+                const audioPlayer = document.getElementById('audioPlayer');
+                // Format dasar base64 ke src elemen HTML Audio
+                audioPlayer.src = `data:audio/wav;base64,${data.ai_audio_base64}`;
+                audioPlayer.play();
+                
+            } catch (error) {
+                alert(error.message);
+                document.getElementById('aiText').textContent = "Error";
+            }
+        });
+    </script>
+</body>
+</html>
