@@ -197,6 +197,16 @@ body::after {
   gap: 10px;
 }
 
+/* Desktop Actions Container */
+.mobile-actions-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
 /* Toggle Switch */
 .personality-toggle {
   display: flex;
@@ -404,41 +414,51 @@ rt {
 
 @media (max-width: 800px) {
   body {
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100vh; /* Fallback */
+    height: 100dvh;
+    overflow: hidden;
   }
   .layout-wrapper {
+    width: 100vw;
+    max-width: 100vw;
     height: 100dvh;
+    margin: 0;
+    padding: 0;
+    gap: 0;
     border-radius: 0;
   }
   .app-container {
+    width: 100vw;
     height: 100dvh;
     border-radius: 0;
     border: none;
     box-shadow: none;
   }
   .header {
-    padding: 12px 15px;
+    padding: 10px 15px;
     flex-direction: column;
     align-items: stretch;
-    gap: 15px;
+    gap: 12px;
   }
   .header h1 {
-    font-size: 1.1rem;
-    justify-content: center;
-  }
-  .header .mobile-actions-container {
-    overflow-x: auto;
-    display: flex;
-    gap: 8px;
-    padding-bottom: 5px;
-    -webkit-overflow-scrolling: touch;
+    font-size: 1.2rem;
     justify-content: flex-start;
   }
-  .header .mobile-actions-container::-webkit-scrollbar {
-    height: 4px;
+  .mobile-actions-container {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+    width: 100%;
   }
-  .header .mobile-actions-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+  .mobile-actions-container::-webkit-scrollbar {
+    height: 3px;
+  }
+  .mobile-actions-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
   }
   .personality-toggle {

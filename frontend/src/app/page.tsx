@@ -513,7 +513,7 @@ export default function Home() {
             </h1>
             
             {activeConversation ? (
-              <div className="mobile-actions-container" style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
+              <div className="mobile-actions-container">
                 {!token && (
                   <button 
                     onClick={() => setIsAuthModalOpen(true)}
@@ -566,7 +566,7 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-                <div className="mobile-actions-container" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <div className="mobile-actions-container">
                   {!token && (
                     <button 
                       onClick={() => setIsAuthModalOpen(true)}
