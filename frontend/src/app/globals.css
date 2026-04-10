@@ -403,6 +403,63 @@ rt {
 }
 
 @media (max-width: 800px) {
+  body {
+    padding: 0;
+  }
+  .layout-wrapper {
+    height: 100dvh;
+    border-radius: 0;
+  }
+  .app-container {
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+  .header {
+    padding: 12px 15px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  .header h1 {
+    font-size: 1.1rem;
+    justify-content: center;
+  }
+  .header .mobile-actions-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 8px;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  .header .mobile-actions-container::-webkit-scrollbar {
+    height: 4px;
+  }
+  .header .mobile-actions-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+  .personality-toggle {
+    flex-shrink: 0;
+  }
+  .toggle-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+  .chat-area {
+    padding: 15px;
+  }
+  .message {
+    max-width: 90%;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 14px;
+  }
+  .input-area {
+    padding: 10px 15px calc(env(safe-area-inset-bottom, 0px) + 10px);
+  }
   .sidebar {
     position: absolute;
     left: -100%;
@@ -412,6 +469,7 @@ rt {
   .sidebar.open {
     left: 0;
     width: 280px;
+    border-radius: 0 24px 24px 0;
   }
   .mobile-menu-btn {
     display: block;
@@ -419,7 +477,8 @@ rt {
     border: none;
     color: var(--text-primary);
     cursor: pointer;
-    margin-right: 15px;
+    position: absolute;
+    left: 15px;
   }
   .overlay.show {
     display: block;
@@ -428,9 +487,9 @@ rt {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     z-index: 50;
-    border-radius: 24px;
+    border-radius: 0;
   }
 }
 
@@ -452,8 +511,8 @@ rt {
   background: var(--panel-bg);
   border: 1px solid var(--border-color);
   border-radius: 24px;
-  padding: 40px;
-  width: 100%;
+  padding: 30px 20px;
+  width: 90%;
   max-width: 400px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
   display: flex;

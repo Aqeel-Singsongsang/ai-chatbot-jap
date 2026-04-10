@@ -513,11 +513,11 @@ export default function Home() {
             </h1>
             
             {activeConversation ? (
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <div className="mobile-actions-container" style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
                 {!token && (
                   <button 
                     onClick={() => setIsAuthModalOpen(true)}
-                    style={{padding: '6px 12px', background: 'rgba(255,255,255,0.1)', border: '1px solid var(--border-color)', borderRadius: '20px', color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.8rem'}}
+                    style={{padding: '6px 12px', background: 'rgba(255,255,255,0.1)', border: '1px solid var(--border-color)', borderRadius: '20px', color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.8rem', whiteSpace: 'nowrap'}}
                   >
                     Login
                   </button>
@@ -526,14 +526,12 @@ export default function Home() {
                   <button 
                     className={`toggle-btn ramah ${activeConversation.translation_lang === 'indonesia' ? 'active' : ''}`}
                     onClick={() => updateActiveSetting('translation_lang', 'indonesia')}
-                    style={{ padding: '4px 10px', fontSize: '0.75rem' }}
                   >
                     ID 🇮🇩
                   </button>
                   <button 
                     className={`toggle-btn pemarah ${activeConversation.translation_lang === 'inggris' ? 'active' : ''}`}
                     onClick={() => updateActiveSetting('translation_lang', 'inggris')}
-                    style={{ padding: '4px 10px', fontSize: '0.75rem' }}
                   >
                     EN 🇺🇸
                   </button>
@@ -561,18 +559,18 @@ export default function Home() {
                         if (!token) return setIsAuthModalOpen(true);
                         updateActiveSetting('learning_mode', !activeConversation.learning_mode);
                     }}
-                    style={{ opacity: !token ? 0.5 : 1, display: 'flex', alignItems: 'center', gap: '4px' }}
+                    style={{ opacity: !token ? 0.5 : 1, display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}
                   >
                     Mode Belajar 🎓
                   </button>
                 </div>
               </div>
             ) : (
-                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <div className="mobile-actions-container" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                   {!token && (
                     <button 
                       onClick={() => setIsAuthModalOpen(true)}
-                      style={{padding: '6px 12px', background: 'rgba(255,255,255,0.1)', border: '1px solid var(--border-color)', borderRadius: '20px', color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.8rem'}}
+                      style={{padding: '6px 12px', background: 'rgba(255,255,255,0.1)', border: '1px solid var(--border-color)', borderRadius: '20px', color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.8rem', whiteSpace: 'nowrap'}}
                     >
                       Login
                     </button>
