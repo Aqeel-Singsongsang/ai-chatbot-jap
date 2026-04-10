@@ -374,6 +374,7 @@ rt {
 
   .mobile-actions-container {
     flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     width: 100%;
