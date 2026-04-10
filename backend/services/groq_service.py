@@ -1,6 +1,7 @@
 import os
 import io
 import base64
+import re
 from typing import Optional
 from groq import Groq
 
@@ -99,7 +100,18 @@ class GroqService:
             temperature=0.7
         )
 
-        return chat_completion.choices[0].message.content
+        raw_content = chat_completion.choices[0].message.content
+        
+        # Bersihkan Furigana berhalusinasi pada kata yang tidak memiliki Kanji
+        def remove_redundant_furigana(match):
+            word = match.group(1)
+            # Kanji berada di rentang unicode \u4e00 sampai \u9faf
+            has_kanji = any('\u4e00' <= char <= '\u9faf' for char in word)
+            return match.group(0) if has_kanji else word
+
+        cleaned_text = re.sub(r"【([^】|]+)\|([^】|]+)】", remove_redundant_furigana, raw_content)
+
+        return cleaned_text
 
     def generate_speech(self, text: str) -> str:
         """
