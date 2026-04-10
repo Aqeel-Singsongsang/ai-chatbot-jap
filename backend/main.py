@@ -9,12 +9,14 @@ load_dotenv()
 from api import chat, conversations, auth
 from database import engine, Base
 
-# Create tables if they don't exist
-Base.metadata.create_all(bind=engine)
+import models
 
 app = FastAPI(title="Japanese Learning AI Chatbot", version="1.0.0")
 
-# Configure CORS for frontend access
+@app.on_event("startup")
+def on_startup():
+    print("Menciptakan semua tabel database jika belum ada...")
+    models.Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # Allow all origins for development, update this for production
