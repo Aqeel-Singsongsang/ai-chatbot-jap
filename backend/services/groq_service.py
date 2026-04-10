@@ -62,7 +62,7 @@ class GroqService:
             
         if learning_mode:
             format_rule = "2. BAGIAN ATAS (BAHASA JEPANG TULISAN ASLI): Tulis paragraf penjelasan/jawaban utamamu 100% DALAM TULISAN JEPANG ASLI (Kanji, Hiragana, Katakana).\n"
-            char_rule = "5. FURIGANA/HURUF: SETIAP KALI kamu menggunakan karakter KANJI, KAMU WAJIB MENJELASKAN CARA BACANYA (HIRAGANA/KATAKANA) DENGAN FORMAT KURUNG SIKU TEPAT SEPERTI INI: 【Kanji|hiragana】. JANGAN PERNAH MENULIS KANJI SENDIRIAN TANPA FORMAT INI!\n"
+            char_rule = "5. FURIGANA KANJI SAJA: JIKA kamu memakai KANJI, WAJIB pakailah format 【Kanji|cara_baca_hiragana】. TAPI DILARANG KERAS MEMAKAI FORMAT INI PADA KATA YANG HANYA BERISI HIRAGANA/KATAKANA! Contoh Gagal/Dilarang: 【よかった|よかった】 atau 【です|です】. Contoh Benar: 【今日|きょう】はよかった。\n"
             example_format = f"【今日|きょう】は【何|なに】を【勉強|べんきょう】しますか？バカ！スカルノはインドネシアの【初代|しょだい】【大統領|だいとうりょう】でした... [lanjutkan teks jepang yang panjang dengan pola ini]\n\n*Terjemahan:*\n{example_translation}"
         else:
             format_rule = "2. BAGIAN ATAS (BAHASA JEPANG ROMAJI): Tulis paragraf penjelasan/jawaban utamamu 100% DALAM BAHASA JEPANG ROMAJI (Huruf Latin). JANGAN ADA campur aduk teks apapun di sini!\n"
